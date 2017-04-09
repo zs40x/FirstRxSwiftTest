@@ -7,6 +7,10 @@ enum Errors: Error {
     case anError
 }
 
+func print<T: CustomStringConvertible>(label: String, event: Event<T>) {
+    print(label, event.element ?? event.error ?? event)
+}
+
 let disposeBag = DisposeBag()
 
 //# Simple observable example
@@ -47,3 +51,16 @@ subject.subscribe(
 subject.on(.next("Hello world from a string subject"))
 subject.on(.next("sdf"))
 subject.on(.error(Errors.anError))
+
+//# Simple BehaviorSubject
+let behaviorSubject = BehaviorSubject(value: "Initial value")
+
+// receiveives the initial value, because behaviorSubjects emit the latest value onSubscription
+behaviorSubject.subscribe {
+    print(label: "1)", event: $0)
+}.addDisposableTo(disposeBag)
+// 1) and 2) will receive tis value, but 2) will receive only this message
+behaviorSubject.on(.next("next value"))
+behaviorSubject.subscribe {
+    print(label: "2)", event: $0)
+}.addDisposableTo(disposeBag)
