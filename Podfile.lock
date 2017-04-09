@@ -1,0 +1,16 @@
+PODS:
+  - RxCocoa (3.3.1):
+    - RxSwift (~> 3.3)
+  - RxSwift (3.3.1)
+
+DEPENDENCIES:
+  - RxCocoa (~> 3.3.1)
+  - RxSwift (~> 3.3.1)
+
+SPEC CHECKSUMS:
+  RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
+  RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
+
+PODFILE CHECKSUM: 588e0fae8218e95e4761ae05ed2dc8b8ebe66310
+
+COCOAPODS: 1.0.1
