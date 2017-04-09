@@ -3,17 +3,21 @@
 import UIKit
 import RxSwift
 
-let one = 1
-let two = 2
-let three = 3
-
-let observeable = Observable.of(one, two, three)
+let disposeBag = DisposeBag()
+let observeable = Observable<Int>.range(start: 1, count: 10)
 
 observeable.subscribe(
     onNext: { element in
         print(element)
+        
+    },
+    onError: { error in
+        print("Error: \(error)")
     },
     onCompleted: {
         print("Completed")
+    },
+    onDisposed: {
+        print("Disposed")
     }
-)
+).addDisposableTo(disposeBag)
