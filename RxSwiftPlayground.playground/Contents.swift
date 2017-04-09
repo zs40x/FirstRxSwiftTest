@@ -64,3 +64,15 @@ behaviorSubject.on(.next("next value"))
 behaviorSubject.subscribe {
     print(label: "2)", event: $0)
 }.addDisposableTo(disposeBag)
+
+//# Simple ReplaySubject
+let replaySubject = ReplaySubject<String>.create(bufferSize: 2)
+replaySubject.on(.next("Initial replay subject value"))
+replaySubject.on(.next("second value"))
+replaySubject.subscribe {
+    print(label: "Replay 1)", event: $0)
+}.addDisposableTo(disposeBag)
+replaySubject.on(.next("Third value"))
+replaySubject.subscribe { // does not receive the first, because the bufferSize is 1
+    print(label: "Replay 2)", event: $0)
+}.addDisposableTo(disposeBag)
