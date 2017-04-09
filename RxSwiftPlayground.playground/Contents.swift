@@ -76,3 +76,13 @@ replaySubject.on(.next("Third value"))
 replaySubject.subscribe { // does not receive the first, because the bufferSize is 1
     print(label: "Replay 2)", event: $0)
 }.addDisposableTo(disposeBag)
+
+//# Variable example
+let aVariable = Variable("Initial value")
+aVariable.value = "another value"
+aVariable.asObservable()
+    .subscribe {
+        print(label: "Var a)", event: $0)
+    }.addDisposableTo(disposeBag)
+aVariable.value = "hey ho"
+// Variables can emmit only values - no erros or completed events
