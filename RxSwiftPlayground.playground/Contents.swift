@@ -86,3 +86,12 @@ aVariable.asObservable()
     }.addDisposableTo(disposeBag)
 aVariable.value = "hey ho"
 // Variables can emmit only values - no erros or completed events
+
+// Filter
+Observable.of(1,2,3,4,5,6)
+    .filter { integer in
+        integer % 2 == 0
+    }
+    .subscribe(onNext: {
+        print($0)
+    }).addDisposableTo(disposeBag)
